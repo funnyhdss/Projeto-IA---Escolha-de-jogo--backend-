@@ -18,7 +18,12 @@ client = genai.Client(api_key=API_KEY)
 def buscar_jogo(caracteriticas, preco):
     prompt = f"""
         Busque jogos (PC, console, Celular) com base nos seguintes critérios: {caracteriticas} e {preco}.
-        Em caso as caracteristicas não sejam critérios de verdade para jogos, por exemplo, orgãos sexuais, coisas inapropriadas e palavras sem sentido, ignore-os, não busque jogos e alerte o usuário sobre o conteudo impróprio.
+        Em caso as caracteristicas não sejam critérios de verdade para jogos, por exemplo, orgãos sexuais, estupro, pedofilia, coisas inapropriadas palavras sem sentido, necrofilia, racismo, drogas, homofobia, transfobia, misoginia, machismo, etc... retorne um JSON com o seguinte formato:
+        {{
+            "status": "error",
+            "message": "Conteúdo impróprio ou não relacionado a jogos."
+        }}
+        Caso o preço seja maior que zero, busque jogos pagos.
         Caso o preço esteja em zero ou menos, busque jogos gratuitos.
         Qualquer jogo é valido (indie, triple A e etc...), mas foque em jogos mais "desconhecidos", que tenham menos players, menos hype e menos marketing.
         Dê preferência jogos em plataformas como Steam, Epic Games, PlayStation Store, Xbox Store, Google Play Store e Apple App Store.
